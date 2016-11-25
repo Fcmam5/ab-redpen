@@ -1,0 +1,9 @@
+#NodeJs
+npm-debug.log
+node_modules
+
+#Linux
+*~
+
+#my notes
+notes

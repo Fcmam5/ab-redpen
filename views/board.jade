@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Hello
+  p Welcome to #{title}
+  div(id=the-board)
+  script(src="https://cdn.socket.io/socket.io-1.4.5.js")
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+  script(src="../javascripts/whiteboard.js")
+  script.
+    var socket = io();
+    io.on('conntection', function(socket){
+    console.log("a user connected");
+    socket.on('disconnect', function(){
+    console.log("disconnected :(");
+    });
+    });
