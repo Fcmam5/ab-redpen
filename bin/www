@@ -30,6 +30,12 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 /**
+* Add socket.io solution from Stackoverflow
+*/
+var io = require('socket.io').listen(server);
+require('../socketsBase')(io);
+
+/**
  * Normalize a port into a number, string, or false.
  */
 
