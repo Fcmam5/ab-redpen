@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var io = require('socket.io').listen(app);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -42,6 +43,13 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+io.on('connection', function(socket){
+    console.log("a user connected");
+    socket.on('disconnect', function(){
+        console.log("disconnected :(");
+    });
 });
 
 module.exports = app;
