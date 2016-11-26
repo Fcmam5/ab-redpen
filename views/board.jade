@@ -45,20 +45,26 @@ block content
         drawing(p.pageX - $(this).offset().left,
                  p.pageY - $(this).offset().top,
                  isDown);
+        socket.emit('draw',pos);
     });
     
     $("#the-board").on('mousemove', function(p) {
             drawing(p.pageX - $(this).offset().left,
                      p.pageY - $(this).offset().top,
                      isDown);
-            console.log("clicked: "+pos.x);
         console.log(pos);
-        //socket.emit('draw',pos);
     });//end mousemove event
     
     $("#the-board").on('mouseleave mouseup', function(){
         isDown = false;
     });
     
+    socket.on('draw',function (ps) {
+        drawing(ps.x,
+                 ps.y,
+                 true);
+                 console.log("is: "+ps);
+    })
     });
+    //TODO: Add move from To function
   p Hello
