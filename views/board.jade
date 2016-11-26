@@ -3,6 +3,11 @@ extends layout
 block content
   h1 Hello
   p Welcome to #{title}
+  ul  
+    li me 
+    span#le-me
+    li him 
+    span#le-him
   #the-board
     canvas#red-pen
   script(src="https://cdn.socket.io/socket.io-1.4.5.js")
@@ -45,26 +50,27 @@ block content
         drawing(p.pageX - $(this).offset().left,
                  p.pageY - $(this).offset().top,
                  isDown);
-        socket.emit('draw',pos);
+                 
     });
     
     $("#the-board").on('mousemove', function(p) {
             drawing(p.pageX - $(this).offset().left,
                      p.pageY - $(this).offset().top,
                      isDown);
-        console.log(pos);
+        socket.emit('draw',pos,isDown);
+        $("#le-me").text(pos.x+","+pos.y);
     });//end mousemove event
     
     $("#the-board").on('mouseleave mouseup', function(){
         isDown = false;
     });
     
-    socket.on('draw',function (ps) {
+    socket.on('draw',function (ps,b) {
         drawing(ps.x,
                  ps.y,
-                 true);
-                 console.log("is: "+ps);
-    })
+                 b);
+                 $("#le-him").text(ps.x+","+ps.y);
+
     });
-    //TODO: Add move from To function
-  p Hello
+    });
+  p Hello from the other side
