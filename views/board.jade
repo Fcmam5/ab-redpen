@@ -3,12 +3,62 @@ extends layout
 block content
   h1 Hello
   p Welcome to #{title}
-  div(id=the-board)
+  #the-board
+    canvas#red-pen
   script(src="https://cdn.socket.io/socket.io-1.4.5.js")
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
   script(src="../javascripts/whiteboard.js")
   script.
     $(document).ready(function(){
     var socket = io();
+    var canvas = $("#red-pen")[0];
+    var ctx = canvas.getContext('2d');
+    
+    canvas.height = $('#the-board').height();
+    canvas.width = $('#the-board').width();
+        
+    var pos = {x:0, y:0};
+    var isDown = false;
+    var setPosition = function(a,b){
+        pos.x = a;
+        pos.y = b;
+    };
+    
+    var drawing = function(x,y,down){
+        if (down) {
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = 'red';
+        ctx.moveTo(pos.x,pos.y);
+        setPosition(x,y);
+        ctx.lineTo(pos.x,pos.y);
+        ctx.closePath();
+        ctx.stroke();
+        }
+        pos.x = x;
+        pos.y = y;
+    };
+    
+    $('#the-board').on('mousedown',function(p){
+        isDown = true;
+        drawing(p.pageX - $(this).offset().left,
+                 p.pageY - $(this).offset().top,
+                 isDown);
+    });
+    
+    $("#the-board").on('mousemove', function(p) {
+            drawing(p.pageX - $(this).offset().left,
+                     p.pageY - $(this).offset().top,
+                     isDown);
+            console.log("clicked: "+pos.x);
+        console.log(pos);
+        //socket.emit('draw',pos);
+    });//end mousemove event
+    
+    $("#the-board").on('mouseleave mouseup', function(){
+        isDown = false;
+    });
+    
     });
   p Hello
