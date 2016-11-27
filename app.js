@@ -10,6 +10,15 @@ var users = require('./routes/users');
 var board = require('./routes/board');
 var app = express();
 
+//Mongoose connection
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/ab_redpen');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Mongoose is alive !");
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

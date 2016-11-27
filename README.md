@@ -35,10 +35,12 @@ As a newbie, I didn't know what should I learn first Python/Django, NodeJS or Re
 * http://stackoverflow.com/a/24610678/5078746
 * http://www.w3schools.com/html/html5_canvas.asp
 * http://www.codicode.com/art/how_to_draw_on_a_html5_canvas_with_a_mouse.aspx
-* https://api.jquery.com/mousemove/
-* https://api.jquery.com/css/
+* https://api.jquery.com/
 * http://stackoverflow.com/a/512067/5078746
-* http://expressjs.com/en/api.html#res.redirect
+* http://expressjs.com/en/api.html
+* http://mongoosejs.com/docs/index.html
+* https://www.tutorialspoint.com/mongodb/
+* https://www.sitepoint.com/creating-restful-apis-express-4/
 
 ## Licensing
 MIT licensed `</>` By :heart:.
