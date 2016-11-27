@@ -11,6 +11,9 @@ module.exports = function (io){
             io.emit('change-bg',img);
             console.log("tbe user changed the bg to: "+img);
         });
+        socket.on('eraseAll',function(){
+            io.emit('eraseAll');
+        });
         socket.on('disconnect', function(){
             console.log("disconnected :(");
         });

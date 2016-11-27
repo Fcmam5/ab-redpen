@@ -29,6 +29,16 @@ var drawing = function(x,y,down){
     pos.y = y;
 };
 
+//Define erase functions
+var eraseAll = function(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+};
+
+//Define erasor
+var erase = function(x,y,w,h){
+        ctx.clearRect(x,y,w,h);
+};
+
 $('#the-board').on('mousedown',function(p){
     isDown = true;
     drawing(p.pageX - $(this).offset().left,
@@ -67,4 +77,15 @@ socket.on('change-bg',function(img){
     console.log(img);
     $("#the-board").css("background-image","url("+img+")");
 });
+
+//Erase button
+$('#erase-btn').on('click', function(){
+    eraseAll();
+    socket.emit('eraseAll');
+});
+
+socket.on('eraseAll', function(){
+    eraseAll();
+});
+
 });
