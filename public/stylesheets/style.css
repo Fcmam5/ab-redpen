@@ -14,5 +14,8 @@ a {
 }
 
 #the-board canvas{
-    
+    position: absolute;
+    z-index: 2;
 }
+#text {position: relative;
+z-index: 0;}

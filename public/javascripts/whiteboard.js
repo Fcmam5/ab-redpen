@@ -16,7 +16,7 @@ var setPosition = function(a,b){
 var drawing = function(x,y,down){
     if (down) {
     ctx.beginPath();
-    ctx.lineWidth = 10;
+    ctx.lineWidth = 5;
     ctx.lineJoin = 'round';
     ctx.strokeStyle = 'red';
     ctx.moveTo(pos.x,pos.y);
